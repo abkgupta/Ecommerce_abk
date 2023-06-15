@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import {HttpClient}  from '@angular/common/http';
-import { signUp } from '../datatype';
+import { login, signUp } from '../datatype';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 @Injectable({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SellerService {
   isSellerloggedIn = new BehaviorSubject<boolean>(false)
+  isLoginError= new EventEmitter<boolean>(false)
   constructor(private http: HttpClient, private route:Router) { }
   userSignup(data: signUp) {
    this.http.post("http://localhost:3000/seller",data, {observe : 'response'}).subscribe((result) =>{
@@ -25,4 +26,18 @@ export class SellerService {
        this.route.navigate(['seller-home'])
     }
   }
+  userLogin(data:login){
+    this.http.get(`http://localhost:3000/seller?email=${data.email}&password=${data.password}`,
+    {observe:'response'}).subscribe((result:any)=>{
+     console.warn(result)
+     if(result && result.body && result.body.length===1){
+       this.isLoginError.emit(false)
+       localStorage.setItem('seller',JSON.stringify(result.body))
+       this.route.navigate(['seller-home'])
+     }else{
+       console.warn("login failed");
+       this.isLoginError.emit(true)
+     }
+    })
+   }
 }
