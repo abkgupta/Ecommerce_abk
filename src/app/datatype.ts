@@ -30,3 +30,11 @@ export interface login {
     productId:number,
     userId:number
   }
+  export interface order{
+    email:string,
+  address:string,
+  contact:string,
+  totalPrice:number,
+  userId:string,
+  id:number|undefined
+  }

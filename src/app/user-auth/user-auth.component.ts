@@ -55,13 +55,17 @@ export class UserAuthComponent implements OnInit {
             this.product.addToCart(cartData).subscribe((result)=>{
               if(result){
                 console.warn("data is stored in DB");
-                
               }
             })
           }, 500)
-          if()
+          if(cartDataList.length===index+1){
+            localStorage.removeItem('localCart')
+          }
         })
       }
+      setTimeout(() =>{
+        this.product.getCartList(userId)
+      }, 2000)
      }
-
+ 
 }
