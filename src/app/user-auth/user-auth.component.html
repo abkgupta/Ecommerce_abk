@@ -25,7 +25,7 @@
    <p>Already Have Account ? <a (click)="openLogin()">Click Here</a></p>
   </form>
     </div>
-<div *ngIf="showLogin" class="common-form" (ngSubmit)="login(userLogin.value)">
+<div *ngIf="showLogin" class="login">
  <h1>User Login</h1>
  <form #userLogin="ngForm" class="common-form" (ngSubmit)="login(userLogin.value)">
     <p class="error-p">{{authError}}</p>
@@ -49,9 +49,9 @@
     #password="ngModel"
     required
     >
-    <p class="invalid-input"><span *ngIf="password.touched">Please enter valid input</span></p>
+    <p class="invalid-input"><span *ngIf="password.invalid && password.touched">Please enter valid input</span></p>
     <button [disabled]="userLogin.invalid" class="form-button">Login</button>
-    <p>Wantto create Account ? <a (click)="openSignUp()">Click Here</a></p>
+    <p>Want to create Account ? <a (click)="openSignUp()">Click Here</a></p>
  </form>
 </div>
 </div>
