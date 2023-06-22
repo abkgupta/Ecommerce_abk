@@ -40,17 +40,35 @@ export class HeaderComponent implements OnInit {
       this.cartItems= items.length
     })
   }
+  searchProduct(query:KeyboardEvent){
+       if(query){
+        const element = query.target as HTMLInputElement;
+        this.product.searchProduct(element.value).subscribe((result)=>{
+          if(result.length>5){
+            result.length = length
+          }
+          this.searchResult = result;
+        })
+       }
+  }
   logout(){
     localStorage.removeItem('seller');
     this.route.navigate(['/'])
   }
-
+hideSearch(){
+  this.searchResult = undefined
+}
+redirectToDetails(id:number){
+  this.route.navigate(['/details/'+id])
+}
   userLogout(){
     localStorage.removeItem('user');
     this.route.navigate(['/user-auth'])
     this.product.cartData.emit([])
   }
-
- 
+submitSearch(val: string){
+  console.warn(val);
+  this.route.navigate([`search/${val}`])
+}
   
 }

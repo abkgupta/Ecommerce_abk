@@ -22,7 +22,6 @@
       "password": "1321334",
       "id": 4
     },
-  
     {
       "name": "dcev",
       "email": "devfev",
@@ -71,7 +70,6 @@
       "password": "uykyiki",
       "id": 15
     },
-    
     {
       "name": "wdwed",
       "email": "efrtgh",
@@ -79,15 +77,16 @@
       "id": 18
     }
   ],
-  "products": [
-      
+  "products": [],
+  "users": [
+    {
+      "name": "2e23d",
+      "email": "fef3f",
+      "password": "3f34f",
+      "id": 1
+    }
   ],
-  "users":[
-
-  ],
-  "orders": [
-
-  ],
+  "orders": [],
   "cart": [
     {
       "name": "Samsung m 40 a ",
